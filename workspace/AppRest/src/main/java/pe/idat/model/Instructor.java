@@ -11,8 +11,8 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    //Empieza en 101 e incrementa en 5
-    //@TableGenerator(name="newGenerater",initialValue=101,allocationSize=5)
+    // Empieza en 101 e incrementa en 5
+    // @TableGenerator(name="newGenerater",initialValue=101,allocationSize=5)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer instructorId;
    	
@@ -43,7 +43,7 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 
 	@PrePersist
 	public void pre() {
-		//fContrato
+		fContrato= new Date();
 	}
 	
 	public Integer getInstructorId() {
