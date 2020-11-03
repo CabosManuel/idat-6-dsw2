@@ -30,7 +30,7 @@ public class InstructorServiceImpl implements InstructorService{
 	@Override
 	@Transactional
 	public void delete(Integer instructorId) {
-		repository.deleteById(instructorId);;
+		repository.deleteById(instructorId);
 	}
 
 	@Override
