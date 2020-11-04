@@ -35,6 +35,10 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
    	// 1,1
    	@OneToOne(mappedBy="instructor")
    	private Conyugue conyugue;
+   	
+   	// 1,N
+   	@OneToMany(mappedBy="instructor")
+   	private Collection<Taller> itemsTaller=new ArrayList<>();
     
     public Instructor(){
     }
@@ -109,6 +113,14 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 
 	public void setConyugue(Conyugue conyugue) {
 		this.conyugue = conyugue;
+	}
+
+	public Collection<Taller> getItemsTaller() {
+		return itemsTaller;
+	}
+
+	public void setItemsTaller(Collection<Taller> itemsTaller) {
+		this.itemsTaller = itemsTaller;
 	}
     
     
