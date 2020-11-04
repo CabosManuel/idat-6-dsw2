@@ -1,22 +1,38 @@
 package com.cabos.model;
 
-public class Celular {
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "celulares")
+public class Celular implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idCelular;
+	
+	@Column
 	private String modelo;
+	@Column
 	private String marca;
+	@Column
 	private Double precio;
-	private Integer tamaño;
+	@Column
+	private Integer tamano;
 	
 	public Celular() {
 	}
 
-	public Celular(Integer idCelular, String modelo, String marca, Double precio, Integer tamaño) {
+	public Celular(Integer idCelular, String modelo, String marca, Double precio, Integer tamano) {
 		super();
 		this.idCelular = idCelular;
 		this.modelo = modelo;
 		this.marca = marca;
 		this.precio = precio;
-		this.tamaño = tamaño;
+		this.tamano = tamano;
 	}
 
 	public Integer getIdCelular() {
@@ -51,11 +67,11 @@ public class Celular {
 		this.precio = precio;
 	}
 
-	public Integer getTamaño() {
-		return tamaño;
+	public Integer getTamano() {
+		return tamano;
 	}
 
-	public void setTamaño(Integer tamaño) {
-		this.tamaño = tamaño;
+	public void setTamano(Integer tamano) {
+		this.tamano = tamano;
 	}
 }
