@@ -1,7 +1,12 @@
 package pe.idat.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +31,10 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
     private String email;
    	@Temporal(TemporalType.DATE) //foramato yyyy-mm-dd
     private Date fContrato;
+   	
+   	// 1,1
+   	@OneToOne(mappedBy="instructor")
+   	private Conyugue conyugue;
     
     public Instructor(){
     }
@@ -92,6 +101,14 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 
 	public void setfContrato(Date fContrato) {
 		this.fContrato = fContrato;
+	}
+
+	public Conyugue getConyugue() {
+		return conyugue;
+	}
+
+	public void setConyugue(Conyugue conyugue) {
+		this.conyugue = conyugue;
 	}
     
     
