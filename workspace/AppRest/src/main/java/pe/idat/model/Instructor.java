@@ -40,6 +40,12 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
    	@OneToMany(mappedBy="instructor")
    	private Collection<Taller> itemsTaller=new ArrayList<>();
     
+   	// N,M
+   	@ManyToMany(
+   			mappedBy = "itemsTecnologia",
+   			cascade = {CascadeType.REFRESH,CascadeType.PERSIST})
+   	private Set<Tecnologia> itemsTecnologia = new HashSet<>();
+   	
     public Instructor(){
     }
 
@@ -121,6 +127,14 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 
 	public void setItemsTaller(Collection<Taller> itemsTaller) {
 		this.itemsTaller = itemsTaller;
+	}
+
+	public Set<Tecnologia> getItemsTecnologia() {
+		return itemsTecnologia;
+	}
+
+	public void setItemsTecnologia(Set<Tecnologia> itemsTecnologia) {
+		this.itemsTecnologia = itemsTecnologia;
 	}
     
     
