@@ -35,24 +35,24 @@ public class InstructorRestController {
 		return new ResponseEntity<>(itemsInstructor,HttpStatus.OK);
 	}
 	
-	@GetMapping
-	public ResponseEntity<?> buscar(@PathVariable Integer instructorId){
-		Instructor instructorDb=instructorService.findById(instructorId);
+	@GetMapping("/buscar/{idInstrucor}")
+	public ResponseEntity<?> buscar(@PathVariable Integer idInstructor){
+		Instructor instructorDb=instructorService.findById(idInstructor);
 		if(instructorDb!=null)
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	@PostMapping
+	@PostMapping("/agregar")
 	public ResponseEntity<?> agregar(@RequestBody Instructor instructor){
 		instructorService.insert(instructor);		
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
-	@PutMapping
-	public ResponseEntity<?> editar(@PathVariable Integer instructorId, @RequestBody Instructor newInstructor){
-		Instructor oldInstructor = instructorService.findById(instructorId);
+	@PutMapping("/editar/{idInstrucor}")
+	public ResponseEntity<?> editar(@PathVariable Integer idInstructor, @RequestBody Instructor newInstructor){
+		Instructor oldInstructor = instructorService.findById(idInstructor);
 		
 		if(oldInstructor!=null) {
 			oldInstructor.setNombre(newInstructor.getNombre());
