@@ -19,26 +19,9 @@ public class Tecnologia implements Serializable {
 	@Column
 	private String nombre;
 	
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.REFRESH
-	})
-	@JoinTable(name="instructores_tecnologias",
-		joinColumns = @JoinColumn(
-				name="id_instructor",
-				nullable=false,
-				
-				// tabla intermedia
-				// FK1
-				foreignKey = @ForeignKey(
-						foreignKeyDefinition = 
-							"foreign key(id_instructor) references instructores(instructor_id)")),
-				// FK2
-				inverseForeignKey = @ForeignKey(
-						foreignKeyDefinition = 
-							"foreign key(id_tecnologia) references tecnologias(id_tegnologia)"
-				)
-	)
+	@ManyToMany(
+			mappedBy="listaVideojuegos",
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Set<Instructor> itemsInstructors = new HashSet<>();
 
 	

@@ -34,17 +34,38 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
    	
    	// 1,1
    	@OneToOne(mappedBy="instructor")
-   	private Conyugue conyugue;
+   	private Conyuge conyugue;
    	
    	// 1,N
    	@OneToMany(mappedBy="instructor")
    	private Collection<Taller> itemsTaller=new ArrayList<>();
     
    	// N,M
-   	@ManyToMany(
-   			mappedBy = "itemsTecnologia",
-   			cascade = {CascadeType.REFRESH,CascadeType.PERSIST})
+   	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+	@JoinTable(name="instructor_tecnologia", // tabla intermedia
+		// FK1
+		joinColumns = @JoinColumn(
+				name="id_instructor",
+				nullable=false,
+				foreignKey = @ForeignKey(
+						foreignKeyDefinition =
+							"foreign key(id_instructor) references instructores(id_instructor)")), 
+		// FK2
+		inverseJoinColumns = @JoinColumn(
+				name="id_tecnologia",
+				nullable=false,
+				foreignKey = @ForeignKey(
+						foreignKeyDefinition = 
+							"foreign key(id_tecnologia) references tecnologias(id_tecnologias)")))
    	private Set<Tecnologia> itemsTecnologia = new HashSet<>();
+   	
+   	// metodo para agrega una tecnologia
+   	public void addTecnologia(Tecnologia tecnologia) {
+   		itemsTecnologia.add(tecnologia);
+   	}
    	
     public Instructor(){
     }
@@ -113,11 +134,11 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 		this.fContrato = fContrato;
 	}
 
-	public Conyugue getConyugue() {
+	public Conyuge getConyugue() {
 		return conyugue;
 	}
 
-	public void setConyugue(Conyugue conyugue) {
+	public void setConyugue(Conyuge conyugue) {
 		this.conyugue = conyugue;
 	}
 
