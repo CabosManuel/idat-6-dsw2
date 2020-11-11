@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="conyugues")
-public class Conyugue implements Serializable{
+public class Conyuge implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -28,10 +28,10 @@ public class Conyugue implements Serializable{
 	)	
 	private Instructor instructor;
 	
-	public Conyugue() {
+	public Conyuge() {
 	}
 
-	public Conyugue(Long dni, String nombre) {
+	public Conyuge(Long dni, String nombre) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
