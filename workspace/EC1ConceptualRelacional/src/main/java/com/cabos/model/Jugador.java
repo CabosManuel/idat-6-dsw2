@@ -8,9 +8,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="jugadores")
-public class Jugador /*implements Serializable*/{
+public class Jugador implements Serializable{
 
-	//private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -96,6 +96,14 @@ public class Jugador /*implements Serializable*/{
 
 	public void setIdInfoPersonal(InformacionPersonal idInfoPersonal) {
 		this.idInfoPersonal = idInfoPersonal;
+	}
+
+	public Set<Videojuego> getListaVideojuegos() {
+		return listaVideojuegos;
+	}
+
+	public void setListaVideojuegos(Set<Videojuego> listaVideojuegos) {
+		this.listaVideojuegos = listaVideojuegos;
 	}
 	
 	

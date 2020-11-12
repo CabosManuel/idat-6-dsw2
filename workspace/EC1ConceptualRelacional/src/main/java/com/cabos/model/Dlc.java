@@ -1,11 +1,15 @@
 package com.cabos.model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="dlc")
-public class Dlc {
+public class Dlc implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idDlc;
@@ -25,6 +29,7 @@ public class Dlc {
 	@ManyToOne
 	@JoinColumn(
 			name="id_videojuego",
+			nullable=false,
 			foreignKey = @ForeignKey(
 					foreignKeyDefinition =
 						"foreign key(id_videojuego) references videojuegos(id_videojuego)"))
@@ -69,6 +74,12 @@ public class Dlc {
 	}
 	public void setContenido(String contenido) {
 		this.contenido = contenido;
+	}
+	public Videojuego getVideojuego() {
+		return videojuego;
+	}
+	public void setVideojuego(Videojuego videojuego) {
+		this.videojuego = videojuego;
 	}
 	
 	

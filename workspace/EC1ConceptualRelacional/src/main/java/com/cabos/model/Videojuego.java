@@ -10,9 +10,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="videojuegos")
-public class Videojuego /*implements Serializable*/{
+public class Videojuego implements Serializable{
 
-	//private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class Videojuego /*implements Serializable*/{
 	@ManyToMany(
 			mappedBy="listaVideojuegos",
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private Set<Jugador> listaJugadores = new HashSet<>();
+	private Set<Jugador> listaJugadores = new HashSet<>(); // HashSet, elementos no repeditos en la lista
 	
 	public Videojuego() {
 	}
@@ -84,6 +84,14 @@ public class Videojuego /*implements Serializable*/{
 
 	public void setListaDlc(Collection<Dlc> listaDlc) {
 		this.listaDlc = listaDlc;
+	}
+
+	public Set<Jugador> getListaJugadores() {
+		return listaJugadores;
+	}
+
+	public void setListaJugadores(Set<Jugador> listaJugadores) {
+		this.listaJugadores = listaJugadores;
 	}
 	
 	
