@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.idat.model.Conyuge;
@@ -18,6 +19,7 @@ import pe.idat.service.ConyugeService;
 import pe.idat.service.InstructorService;
 
 @RestController
+@RequestMapping("/rest/conyuge")
 public class ConyugeRestController {
     
     @Autowired

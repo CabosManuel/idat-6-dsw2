@@ -28,7 +28,7 @@ public class Taller implements Serializable{
 			nullable=false,
 			foreignKey = @ForeignKey(
 					foreignKeyDefinition = 
-					"foreign key talleres(id_instructor) references instructores(talleres)"
+					"foreign key (id_instructor) references instructores(id_instructor)"
 			)
 	)
 	private Instructor instructor;

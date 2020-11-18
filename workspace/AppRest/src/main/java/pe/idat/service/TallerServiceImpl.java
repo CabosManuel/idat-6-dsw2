@@ -2,11 +2,13 @@ package pe.idat.service;
 
 import java.util.Collection;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.idat.model.Taller;
 import pe.idat.repository.TallerRepository;
 
+@Service
 public class TallerServiceImpl implements TallerService{
 
 	private TallerRepository repo;

@@ -11,6 +11,7 @@ import pe.idat.model.Taller;
 import pe.idat.service.TallerService;
 
 @RestController
+@RequestMapping("/rest/taller")
 public class TallerRestController {
 	
 	@Autowired

@@ -20,9 +20,9 @@ public class Tecnologia implements Serializable {
 	private String nombre;
 	
 	@ManyToMany(
-			mappedBy="listaVideojuegos",
+			mappedBy="itemsTecnologia",
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private Set<Instructor> itemsInstructors = new HashSet<>();
+	private Set<Instructor> itemsInstructor = new HashSet<>();
 
 	
 	public Tecnologia(Integer idTecnologia, String nombre) {
@@ -42,11 +42,11 @@ public class Tecnologia implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Set<Instructor> getItemsInstructors() {
-		return itemsInstructors;
+	public Set<Instructor> getItemsInstructores() {
+		return itemsInstructor;
 	}
-	public void setItemsInstructors(Set<Instructor> itemsInstructors) {
-		this.itemsInstructors = itemsInstructors;
+	public void setItemsInstructors(Set<Instructor> itemsInstructores) {
+		this.itemsInstructor = itemsInstructores;
 	}
 	
 	

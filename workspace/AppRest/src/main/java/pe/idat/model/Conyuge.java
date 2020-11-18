@@ -22,10 +22,9 @@ public class Conyuge implements Serializable{
 			nullable=false,
 			unique=true,
 			foreignKey=@ForeignKey(
-					foreignKeyDefinition = 
-					"foreign key(id_instructor) references instructores(instructor_id)"
-			)
-	)	
+					foreignKeyDefinition =
+					"foreign key(id_instructor) references instructores(id_instructor)"))
+					// foreign key(name) 
 	private Instructor instructor;
 	
 	public Conyuge() {

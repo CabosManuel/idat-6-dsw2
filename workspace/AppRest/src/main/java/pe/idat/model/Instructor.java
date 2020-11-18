@@ -19,7 +19,7 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
     // Empieza en 101 e incrementa en 5
     // @TableGenerator(name="newGenerater",initialValue=101,allocationSize=5)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer instructorId;
+    private Integer idInstructor;
    	
    	@Column
     private String nombre;
@@ -59,7 +59,7 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 				nullable=false,
 				foreignKey = @ForeignKey(
 						foreignKeyDefinition = 
-							"foreign key(id_tecnologia) references tecnologias(id_tecnologias)")))
+							"foreign key(id_tecnologia) references tecnologias(id_tecnologia)")))
    	private Set<Tecnologia> itemsTecnologia = new HashSet<>();
    	
    	// metodo para agrega una tecnologia
@@ -70,10 +70,10 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
     public Instructor(){
     }
 
-	public Instructor(Integer instructorId, String nombre, String apellido, String password, String email,
+	public Instructor(Integer idInstructor, String nombre, String apellido, String password, String email,
 			Date fContrato) {
 		super();
-		this.instructorId = instructorId;
+		this.idInstructor = idInstructor;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.password = password;
@@ -87,11 +87,11 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 	}
 	
 	public Integer getInstructorId() {
-		return instructorId;
+		return idInstructor;
 	}
 
 	public void setInstructorId(Integer instructorId) {
-		this.instructorId = instructorId;
+		this.idInstructor = instructorId;
 	}
 
 	public String getNombre() {

@@ -18,7 +18,7 @@ import pe.idat.model.Instructor;
 import pe.idat.service.InstructorService;
 
 @RestController
-@RequestMapping("rest/instructor")
+@RequestMapping("/rest/instructor")
 public class InstructorRestController {
 	
 	@Autowired
