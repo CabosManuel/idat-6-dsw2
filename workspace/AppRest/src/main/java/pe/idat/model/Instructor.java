@@ -34,7 +34,7 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
    	
    	// 1,1
    	@OneToOne(mappedBy="instructor")
-   	private Conyuge conyugue;
+   	private Conyuge conyuge;
    	
    	// 1,N
    	@OneToMany(mappedBy="instructor")
@@ -86,12 +86,12 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 		fContrato= new Date();
 	}
 	
-	public Integer getInstructorId() {
+	public Integer getIdInstructor() {
 		return idInstructor;
 	}
 
-	public void setInstructorId(Integer instructorId) {
-		this.idInstructor = instructorId;
+	public void setIdInstructor(Integer idInstructor) {
+		this.idInstructor = idInstructor;
 	}
 
 	public String getNombre() {
@@ -134,12 +134,12 @@ public class Instructor implements Serializable{ //Serializable para mayor "segu
 		this.fContrato = fContrato;
 	}
 
-	public Conyuge getConyugue() {
-		return conyugue;
+	public Conyuge getConyuge() {
+		return conyuge;
 	}
 
-	public void setConyugue(Conyuge conyugue) {
-		this.conyugue = conyugue;
+	public void setConyugue(Conyuge conyuge) {
+		this.conyuge = conyuge;
 	}
 
 	public Collection<Taller> getItemsTaller() {

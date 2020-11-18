@@ -35,11 +35,11 @@ public class InstructorRestController {
 		return new ResponseEntity<>(itemsInstructor,HttpStatus.OK);
 	}
 	
-	@GetMapping("/buscar/{idInstrucor}")
+	@GetMapping("/buscar/{idInstructor}")
 	public ResponseEntity<?> buscar(@PathVariable Integer idInstructor){
 		Instructor instructorDb=instructorService.findById(idInstructor);
 		if(instructorDb!=null)
-			return new ResponseEntity<Void>(HttpStatus.OK);
+			return new ResponseEntity<>(instructorDb,HttpStatus.OK);
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
