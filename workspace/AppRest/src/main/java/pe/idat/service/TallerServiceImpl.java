@@ -2,6 +2,7 @@ package pe.idat.service;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import pe.idat.repository.TallerRepository;
 @Service
 public class TallerServiceImpl implements TallerService{
 
+	@Autowired
 	private TallerRepository repo;
 	
 	@Override
