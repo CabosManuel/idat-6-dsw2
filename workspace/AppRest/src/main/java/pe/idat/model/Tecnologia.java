@@ -25,6 +25,9 @@ public class Tecnologia implements Serializable {
 	private Set<Instructor> itemsInstructor = new HashSet<>();
 
 	
+	public Tecnologia() {
+	}
+	
 	public Tecnologia(Integer idTecnologia, String nombre) {
 		super();
 		this.idTecnologia = idTecnologia;
