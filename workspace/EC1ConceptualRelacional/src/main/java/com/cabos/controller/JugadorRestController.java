@@ -20,9 +20,7 @@ import com.cabos.services.JugadorService;
 
 @RestController
 @RequestMapping("/rest/jugador")
-public class JugadorRestController implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class JugadorRestController{
 	
 	@Autowired
 	private JugadorService service;
