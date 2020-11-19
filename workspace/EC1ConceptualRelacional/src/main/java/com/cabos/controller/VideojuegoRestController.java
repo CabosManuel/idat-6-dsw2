@@ -1,6 +1,5 @@
 package com.cabos.controller;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +19,19 @@ import com.cabos.services.VideojuegoService;
 
 @RestController
 @RequestMapping("/rest/videojuego")
-public class VideojuegoRestController implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class VideojuegoRestController{
 	
 	@Autowired
 	private VideojuegoService service;
 	
 	@GetMapping("/listar")
 	public ResponseEntity<?> listar(){
-		Collection<Videojuego> videojuegoes = service.findAll();
+		Collection<Videojuego> videojuegos = service.findAll();
 		
-		if(videojuegoes.isEmpty()) 
+		if(videojuegos.isEmpty()) 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
-		return new ResponseEntity<>(videojuegoes,HttpStatus.OK);
+		return new ResponseEntity<>(videojuegos,HttpStatus.OK);
 	}
 	
 	@GetMapping("/buscar/{idVideojuego}")

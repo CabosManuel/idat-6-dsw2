@@ -1,6 +1,5 @@
 package com.cabos.controller;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,7 @@ import com.cabos.services.DlcService;
 
 @RestController
 @RequestMapping("/rest/dlc")
-public class DlcRestController implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class DlcRestController{
 	
 	@Autowired
 	private DlcService service;
