@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cabos.mapper.MapperUtil;
+import com.cabos.mapper.VideojuegosMapper;
 import com.cabos.model.Videojuego;
 import com.cabos.services.VideojuegoService;
 
@@ -27,11 +29,12 @@ public class VideojuegoRestController{
 	@GetMapping("/listar")
 	public ResponseEntity<?> listar(){
 		Collection<Videojuego> videojuegos = service.findAll();
+		Collection<VideojuegosMapper> videojuegosMappers = MapperUtil.convertVideojuego(videojuegos);
 		
 		if(videojuegos.isEmpty()) 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
-		return new ResponseEntity<>(videojuegos,HttpStatus.OK);
+		return new ResponseEntity<>(videojuegosMappers,HttpStatus.OK);
 	}
 	
 	@GetMapping("/buscar/{idVideojuego}")

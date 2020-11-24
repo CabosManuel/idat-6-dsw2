@@ -46,7 +46,7 @@ public class Jugador implements Serializable{
 						foreignKeyDefinition = 
 							"foreign key(id_videojuego) references videojuegos(id_videojuego)")))
 	private Set<Videojuego> listaVideojuegos = new HashSet<>();
-	
+		
 	public Jugador() {
 	}
 
@@ -56,6 +56,10 @@ public class Jugador implements Serializable{
 		this.nombreUsuario = nombreUsuario;
 		this.nJuegos = nJuegos;
 		this.horasJugadas = horasJugadas;
+	}
+	
+	public void addVideojuego(Videojuego videojuego) {
+		listaVideojuegos.add(videojuego);
 	}
 
 	public Integer getIdJugador() {
