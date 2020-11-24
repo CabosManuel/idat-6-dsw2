@@ -25,6 +25,14 @@ public class InformacionPersonalRestController {
 	@Autowired
 	private InformacionPersonalService service;
 
+	
+	@PostMapping("/agregar")
+	public ResponseEntity<?> agregar(@RequestBody InformacionPersonal informacionPersonal){
+		service.insert(informacionPersonal);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+
 	@GetMapping("/listar")
 	public ResponseEntity<?> listar(){
 		Collection<InformacionPersonal> infoPersonales = service.findAll();
@@ -35,6 +43,7 @@ public class InformacionPersonalRestController {
 		return new ResponseEntity<>(infoPersonales,HttpStatus.OK);
 	}
 	
+	
 	@GetMapping("/buscar/{idInfoPersonal}")
 	public ResponseEntity<?> buscar(@PathVariable Integer idInfoPersonal){
 		InformacionPersonal infoPersonalDb = service.findById(idInfoPersonal);
@@ -43,15 +52,9 @@ public class InformacionPersonalRestController {
 			return new ResponseEntity<>(infoPersonalDb,HttpStatus.OK);
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}	
-
-	@PostMapping("/agregar")
-	public ResponseEntity<?> agregar(@RequestBody InformacionPersonal informacionPersonal){
-		service.insert(informacionPersonal);
-		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/editar")
+	@PutMapping("/editar/{idInfoPersonal}")
 	public ResponseEntity<?> editar(@PathVariable Integer idInfoPersonal,
 			@RequestBody InformacionPersonal informacionPersonal){
 		
@@ -65,7 +68,7 @@ public class InformacionPersonalRestController {
 			infoPersonalDb.setNombres(informacionPersonal.getNombres());
 			service.insert(infoPersonalDb);			
 			
-			return new ResponseEntity<>(infoPersonalDb,HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<>("El código "+idInfoPersonal+"no existe",HttpStatus.NOT_FOUND);

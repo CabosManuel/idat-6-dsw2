@@ -1,6 +1,5 @@
 package com.cabos.controller;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cabos.mapper.JugadorMapper;
+import com.cabos.mapper.MapperUtil;
 import com.cabos.model.Jugador;
 import com.cabos.services.JugadorService;
 
@@ -28,12 +29,20 @@ public class JugadorRestController{
 	@GetMapping("/listar")
 	public ResponseEntity<?> listar(){
 		Collection<Jugador> jugadores = service.findAll();
+		Collection<JugadorMapper> jugadoresMaper = MapperUtil.convertJugador(jugadores);
 		
 		if(jugadores.isEmpty()) 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
-		return new ResponseEntity<>(jugadores,HttpStatus.OK);
+		return new ResponseEntity<>(jugadoresMaper,HttpStatus.OK);
 	}
+	
+	@PostMapping("/agregar")
+	public ResponseEntity<?> agregar(@RequestBody Jugador Jugador){
+		service.insert(Jugador);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	}
+	
 	
 	@GetMapping("/buscar/{idJugador}")
 	public ResponseEntity<?> buscar(@PathVariable Integer idJugador){
@@ -43,12 +52,6 @@ public class JugadorRestController{
 			return new ResponseEntity<>(JugadorDb,HttpStatus.OK);
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
-	
-	@PostMapping("/agregar")
-	public ResponseEntity<?> agregar(@RequestBody Jugador Jugador){
-		service.insert(Jugador);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/editar/{idJugador}")
