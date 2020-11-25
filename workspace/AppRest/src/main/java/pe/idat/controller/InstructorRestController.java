@@ -1,6 +1,7 @@
 package pe.idat.controller;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.apache.tomcat.util.http.fileupload.MultipartStream.ItemInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import pe.idat.mapper.InstructorMapper;
+import pe.idat.mapper.InstructorMapper2;
+import pe.idat.mapper.MapperUtil;
 import pe.idat.model.Instructor;
 import pe.idat.service.InstructorService;
 
@@ -23,6 +28,32 @@ public class InstructorRestController {
 	
 	@Autowired
 	private InstructorService instructorService;
+	
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody Instructor instructor)
+	{
+		Instructor instructorDb=instructorService.findByPasswordAndEmail(instructor);
+		
+		if(instructor!=null) {
+			InstructorMapper2 instructorMapper2=MapperUtil.convertToMapper2(instructorDb);
+			
+			return new ResponseEntity<>(instructorMapper2,HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>("¡Acceso Denegado!",HttpStatus.UNAUTHORIZED);
+	}
+	
+	@GetMapping("/buscar")
+	public ResponseEntity<?> buscarPorFContrado(@RequestParam("fcontrato") Date fcontrato){
+		Collection<Instructor> items=instructorService.findAllByFcontrato(fcontrato);
+		
+		if(items.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
+		Collection<InstructorMapper> itemsInstructorMappers = MapperUtil.convert(items);
+		
+		return new ResponseEntity<>(itemsInstructorMappers,HttpStatus.OK);
+	}
 	
 	@GetMapping("/listar")	
 	public ResponseEntity<?> listar(){
