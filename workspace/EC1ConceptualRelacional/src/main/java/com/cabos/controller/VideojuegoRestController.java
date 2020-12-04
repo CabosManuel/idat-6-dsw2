@@ -29,7 +29,7 @@ public class VideojuegoRestController{
 	@GetMapping("/listar")
 	public ResponseEntity<?> listar(){
 		Collection<Videojuego> videojuegos = service.findAll();
-		Collection<VideojuegosMapper> videojuegosMappers = MapperUtil.convertVideojuego(videojuegos);
+		Collection<VideojuegosMapper> videojuegosMappers = MapperUtil.convertCollVideojuego(videojuegos);
 		
 		if(videojuegos.isEmpty()) 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

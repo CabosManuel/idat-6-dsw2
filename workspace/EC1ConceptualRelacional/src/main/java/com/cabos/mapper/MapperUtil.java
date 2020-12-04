@@ -7,23 +7,24 @@ import com.cabos.model.Jugador;
 import com.cabos.model.Videojuego;
 
 public class MapperUtil {
-	public static Collection<JugadorMapper> convertJugador(Collection<Jugador> jugadores){
+	
+	public static JugadorMapper convertJugador(Jugador j) {
+		return new JugadorMapper(j.getIdJugador(),j.getNombreUsuario(), 
+				j.getnJuegos(),j.getHorasJugadas());
+	}
+	
+	public static Collection<JugadorMapper> convertCollJugadores(Collection<Jugador> jugadores){
 		Collection<JugadorMapper> jugadoresMapper = new ArrayList<>();
 		
-		for(Jugador jugador:jugadores) {
-			JugadorMapper mapper = new JugadorMapper();
-			
-			mapper.setNombreUsuario(jugador.getNombreUsuario());
-			mapper.setnJuegos(jugador.getnJuegos());
-			mapper.setHorasJugadas(jugador.getHorasJugadas());
-			
+		for(Jugador jugador:jugadores) {			
+			JugadorMapper mapper = convertJugador(jugador);			
 			jugadoresMapper.add(mapper);
 		}
 		
 		return jugadoresMapper;
 	}
 	
-	public static Collection<VideojuegosMapper> convertVideojuego(Collection<Videojuego> videojuegos){
+	public static Collection<VideojuegosMapper> convertCollVideojuego(Collection<Videojuego> videojuegos){
 		Collection<VideojuegosMapper> videojuegosMapper = new ArrayList<>();
 		
 		for(Videojuego videojuego:videojuegos) {

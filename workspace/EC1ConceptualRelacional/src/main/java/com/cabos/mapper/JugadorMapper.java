@@ -1,6 +1,7 @@
 package com.cabos.mapper;
 
 public class JugadorMapper {
+	private Integer id;
 	private String nombreUsuario;
 	private Integer nJuegos;
 	private Integer horasJugadas;
@@ -8,11 +9,19 @@ public class JugadorMapper {
 	public JugadorMapper() {
 	}
 	
-	public JugadorMapper(String nombreUsuario, Integer nJuegos, Integer horasJugadas) {
-		super();
+	public JugadorMapper(Integer id, String nombreUsuario, Integer nJuegos, Integer horasJugadas) {
+		this.id = id;
 		this.nombreUsuario = nombreUsuario;
 		this.nJuegos = nJuegos;
 		this.horasJugadas = horasJugadas;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNombreUsuario() {
