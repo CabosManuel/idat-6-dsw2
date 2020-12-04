@@ -23,7 +23,8 @@ public class Jugador implements Serializable{
 	@Column
 	private Integer horasJugadas;
 	
-	@OneToOne(mappedBy = "jugador")
+	@OneToOne(mappedBy = "jugador",
+			cascade = CascadeType.REMOVE) // cascade, para eliminar junto con la otra tabla
 	private InformacionPersonal idInfoPersonal;
 	
 	@ManyToMany(cascade = {

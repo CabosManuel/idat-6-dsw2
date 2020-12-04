@@ -29,18 +29,20 @@ public class JugadorRestController{
 	@GetMapping("/listar")
 	public ResponseEntity<?> listar(){
 		Collection<Jugador> jugadores = service.findAll();
-		Collection<JugadorMapper> jugadoresMaper = MapperUtil.convertJugador(jugadores);
+		Collection<JugadorMapper> jugadoresMapper = MapperUtil.convertCollJugadores(jugadores);
 		
 		if(jugadores.isEmpty()) 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
-		return new ResponseEntity<>(jugadoresMaper,HttpStatus.OK);
+		return new ResponseEntity<>(jugadoresMapper,HttpStatus.OK);
 	}
 	
 	@PostMapping("/agregar")
-	public ResponseEntity<?> agregar(@RequestBody Jugador Jugador){
-		service.insert(Jugador);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	public ResponseEntity<?> agregar(@RequestBody Jugador jugador){
+		service.insert(jugador);
+		return new ResponseEntity<>(
+				"¡Jugador \""+jugador.getNombreUsuario()+"\" agregado correctamente!",
+				HttpStatus.CREATED);
 	}
 	
 	
@@ -48,10 +50,12 @@ public class JugadorRestController{
 	public ResponseEntity<?> buscar(@PathVariable Integer idJugador){
 		Jugador JugadorDb = service.findById(idJugador);
 		
-		if(JugadorDb!=null) 
-			return new ResponseEntity<>(JugadorDb,HttpStatus.OK);
+		if(JugadorDb!=null)
+			return new ResponseEntity<>(MapperUtil.convertJugador(JugadorDb),HttpStatus.OK);
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe jugador con ID: "+idJugador+"!",
+				HttpStatus.NOT_FOUND);
 	}
 	
 	@PutMapping("/editar/{idJugador}")
@@ -64,10 +68,12 @@ public class JugadorRestController{
 			oldJugador.setHorasJugadas(newJugador.getHorasJugadas());
 			
 			service.update(oldJugador);
-			return new ResponseEntity<>(oldJugador,HttpStatus.OK);
+			return new ResponseEntity<>(MapperUtil.convertJugador(oldJugador),HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe jugador con ID: "+idJugador+"!",
+				HttpStatus.NOT_FOUND);
 	}
 	
 	@DeleteMapping("/eliminar/{idJugador}")
@@ -75,9 +81,13 @@ public class JugadorRestController{
 		
 		if(service.findById(idJugador)!=null) {
 			service.delete(idJugador);
-			return new ResponseEntity<Void>(HttpStatus.OK); 
+			return new ResponseEntity<>(
+					"Jugador elimnado.",
+					HttpStatus.OK); 
 		}
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe jugador con ID: "+idJugador+"!",
+				HttpStatus.NOT_FOUND);
 	}
 }
