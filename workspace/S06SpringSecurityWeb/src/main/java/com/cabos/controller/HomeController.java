@@ -22,4 +22,14 @@ public class HomeController {
 	public String docente() {
 		return "docente";
 	}
+	
+	@RequestMapping(value = "/access_denied",method = RequestMethod.GET)
+	public String access_denied() {
+		return "access_denied";
+	}
+	
+	@RequestMapping(value = "/login",method = RequestMethod.GET)
+	public String login() {
+		return "login";
+	}
 }

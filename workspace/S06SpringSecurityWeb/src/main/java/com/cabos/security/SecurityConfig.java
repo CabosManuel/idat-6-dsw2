@@ -1,5 +1,6 @@
 package com.cabos.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private CustomSuccessHandler customSuccessHandler;
+	
 	// Registrar usaurios
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication().withUser("cabos").password(passwordEncoder().encode("123")).roles("ESTUDIANTE");
@@ -26,9 +30,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/", "/index").permitAll()
 				// ** -> todo lo que esté a la derecha
 				.antMatchers("/estudiante/**").access("hasRole('ESTUDIANTE')")
-				.antMatchers("/docente/**").access("hasRole('DOCENTE')");
+				.antMatchers("/docente/**").hasRole("DOCENTE");
 
-		http.authorizeRequests().and().formLogin();
+		// http.authorizeRequests().and().formLogin(); // login por defecto
+
+		http.authorizeRequests().and().formLogin()
+			.loginPage("/login") // login personalizado
+			.usernameParameter("txt_user").passwordParameter("txt_pass")
+			.successHandler(customSuccessHandler);
+		
+		http.authorizeRequests().and() // manejo de errores, páginas de errores
+			.exceptionHandling().accessDeniedPage("/access_denied");
+		
+		
 	}
 
 	// Enciptar contraseñas

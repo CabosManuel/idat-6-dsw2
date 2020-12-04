@@ -20,7 +20,18 @@
 	
 	<!-- Cuando ya está logeado -->
 	<security:authorize access="isAuthenticated()">
-		<a href="<c:url value='/logut'/>">Cerrar sesión</a>
+		<security:authentication property="principal.username" var="usuario"/>
+		<p>Hola <b>${usuario} }</b></p>|
+		
+		<security:authorize access="hasRole{'ESTUDIANTE'}">
+			<a href="<c:url value='/estudiante'/>">Ir a estudiante</a>
+		</security:authorize>
+		
+		<security:authorize access="hasRole{'DOCENTE'}">
+			<a href="<c:url value='/docente'/>">Ir a estudiante</a>
+		</security:authorize>
+		
+		|<a href="<c:url value='/logut'/>">Cerrar sesión</a>
 	</security:authorize>
 </body>
 </html>
