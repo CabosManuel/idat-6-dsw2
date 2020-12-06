@@ -29,10 +29,11 @@ public class JugadorRestController{
 	@GetMapping("/listar")
 	public ResponseEntity<?> listar(){
 		Collection<Jugador> jugadores = service.findAll();
-		Collection<JugadorMapper> jugadoresMapper = MapperUtil.convertCollJugadores(jugadores);
 		
 		if(jugadores.isEmpty()) 
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>("No hay jugadores.",HttpStatus.NO_CONTENT);
+		
+		Collection<JugadorMapper> jugadoresMapper = MapperUtil.convertCollJugadores(jugadores);
 		
 		return new ResponseEntity<>(jugadoresMapper,HttpStatus.OK);
 	}
@@ -41,7 +42,7 @@ public class JugadorRestController{
 	public ResponseEntity<?> agregar(@RequestBody Jugador jugador){
 		service.insert(jugador);
 		return new ResponseEntity<>(
-				"¡Jugador \""+jugador.getNombreUsuario()+"\" agregado correctamente!",
+				"¡Jugador \""+jugador.getNombreUsuario()+"\" con ID: "+jugador.getIdJugador()+", agregado correctamente!",
 				HttpStatus.CREATED);
 	}
 	

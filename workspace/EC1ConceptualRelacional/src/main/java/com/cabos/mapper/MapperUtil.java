@@ -8,6 +8,7 @@ import com.cabos.model.Videojuego;
 
 public class MapperUtil {
 	
+	// JUGADOR
 	public static JugadorMapper convertJugador(Jugador j) {
 		return new JugadorMapper(j.getIdJugador(),j.getNombreUsuario(), 
 				j.getnJuegos(),j.getHorasJugadas());
