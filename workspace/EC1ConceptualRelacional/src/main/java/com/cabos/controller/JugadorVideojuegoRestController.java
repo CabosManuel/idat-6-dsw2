@@ -27,16 +27,27 @@ public class JugadorVideojuegoRestController {
 	public ResponseEntity<?> agregar(@RequestBody JugadorVideojuego jugadorVideojuego){
 		
 		Jugador jugadorDb = jugadorService.findById(jugadorVideojuego.getJugador().getIdJugador());
+		Videojuego videojuegoDb;
 		
 		if(jugadorDb!=null) {
-			Videojuego videojuegoDb = videojuegoService.findById(jugadorVideojuego.getVideojuego().getIdVideojuego());
+			videojuegoDb = videojuegoService.findById(jugadorVideojuego.getVideojuego().getIdVideojuego());
 			
-			jugadorDb.addVideojuego(videojuegoDb);
-			jugadorService.insert(jugadorDb);
+			if (videojuegoDb!=null) {
+				jugadorDb.addVideojuego(videojuegoDb);
+				jugadorService.insert(jugadorDb);
+				
+				return new ResponseEntity<>(
+						"El jugador "+jugadorDb.getNombreUsuario()+" ahora tiene el juego: "+videojuegoDb.getNombre()+".",
+						HttpStatus.CREATED);
+			}
 			
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return new ResponseEntity<>(
+					"¡No existe un videjuego con ID: "+jugadorVideojuego.getVideojuego().getIdVideojuego()+"!",
+					HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe un jugador con ID: "+jugadorVideojuego.getJugador().getIdJugador()+"!",
+				HttpStatus.NOT_FOUND);
 	}
 }
