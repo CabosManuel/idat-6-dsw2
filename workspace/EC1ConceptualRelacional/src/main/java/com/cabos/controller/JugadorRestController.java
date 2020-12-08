@@ -33,9 +33,7 @@ public class JugadorRestController{
 		if(jugadores.isEmpty()) 
 			return new ResponseEntity<>("No hay jugadores.",HttpStatus.NO_CONTENT);
 		
-		Collection<JugadorMapper> jugadoresMapper = MapperUtil.convertCollJugadores(jugadores);
-		
-		return new ResponseEntity<>(jugadoresMapper,HttpStatus.OK);
+		return new ResponseEntity<>(MapperUtil.convertCollJugadores(jugadores),HttpStatus.OK);
 	}
 	
 	@PostMapping("/agregar")
@@ -55,7 +53,7 @@ public class JugadorRestController{
 			return new ResponseEntity<>(MapperUtil.convertJugador(JugadorDb),HttpStatus.OK);
 		
 		return new ResponseEntity<>(
-				"¡No existe jugador con ID: "+idJugador+"!",
+				"¡No existe un jugador con ID: "+idJugador+"!",
 				HttpStatus.NOT_FOUND);
 	}
 	
@@ -73,7 +71,7 @@ public class JugadorRestController{
 		}
 		
 		return new ResponseEntity<>(
-				"¡No existe jugador con ID: "+idJugador+"!",
+				"¡No existe un jugador con ID: "+idJugador+"!",
 				HttpStatus.NOT_FOUND);
 	}
 	
@@ -88,7 +86,7 @@ public class JugadorRestController{
 		}
 		
 		return new ResponseEntity<>(
-				"¡No existe jugador con ID: "+idJugador+"!",
+				"¡No existe un jugador con ID: "+idJugador+"!",
 				HttpStatus.NOT_FOUND);
 	}
 }
