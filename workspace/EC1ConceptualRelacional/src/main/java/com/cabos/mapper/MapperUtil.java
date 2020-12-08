@@ -3,6 +3,7 @@ package com.cabos.mapper;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.cabos.model.InformacionPersonal;
 import com.cabos.model.Jugador;
 import com.cabos.model.Videojuego;
 
@@ -23,6 +24,28 @@ public class MapperUtil {
 		}
 		
 		return jugadoresMapper;
+	}
+	
+	// INFORMACIÓN PERSONAL
+	public static InfoPersonalMapper convertInfoPersonal(InformacionPersonal ip) {
+		
+		return new InfoPersonalMapper(
+				ip.getIdInfoPersonal(), 
+				ip.getNombres()+" "+ip.getApellidos(), 
+				ip.getJugador().getNombreUsuario(), 
+				ip.getCorreo(), 
+				LocalDate.parse(ip.getfNacimiento().toString()).plusDays(1));
+	}
+	
+	public static Collection<InfoPersonalMapper> convertCollInfoP(Collection<InformacionPersonal> infosPersonales){
+		Collection<InfoPersonalMapper> infosPersonalesMapper = new ArrayList<>();
+		
+		for(InformacionPersonal infoPersonal:infosPersonales) {
+			InfoPersonalMapper mapper = convertInfoPersonal(infoPersonal);
+			infosPersonalesMapper.add(mapper);
+		}
+		
+		return infosPersonalesMapper;
 	}
 	
 	// VIDEOJUEGOS 

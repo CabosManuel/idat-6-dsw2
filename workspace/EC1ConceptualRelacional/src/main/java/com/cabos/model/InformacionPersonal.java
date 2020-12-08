@@ -30,7 +30,7 @@ public class InformacionPersonal implements Serializable{
 	@Column
 	private String contrasena;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(
 			name="id_jugador",
 			nullable=false,
