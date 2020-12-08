@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cabos.mapper.MapperUtil;
-import com.cabos.mapper.VideojuegosMapper;
+import com.cabos.mapper.VideojuegoMapper;
 import com.cabos.model.Videojuego;
 import com.cabos.services.VideojuegoService;
 
@@ -29,28 +29,31 @@ public class VideojuegoRestController{
 	@GetMapping("/listar")
 	public ResponseEntity<?> listar(){
 		Collection<Videojuego> videojuegos = service.findAll();
-		Collection<VideojuegosMapper> videojuegosMappers = MapperUtil.convertCollVideojuego(videojuegos);
 		
-		if(videojuegos.isEmpty()) 
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		if(videojuegos.isEmpty())
+			return new ResponseEntity<>("No hay videojuegos.",HttpStatus.NO_CONTENT);
 		
-		return new ResponseEntity<>(videojuegosMappers,HttpStatus.OK);
+		return new ResponseEntity<>(MapperUtil.convertCollVideojuego(videojuegos),HttpStatus.OK);
 	}
 	
 	@GetMapping("/buscar/{idVideojuego}")
 	public ResponseEntity<?> buscar(@PathVariable Integer idVideojuego){
-		Videojuego VideojuegoDb = service.findById(idVideojuego);
+		Videojuego videojuegoDb = service.findById(idVideojuego);
 		
-		if(VideojuegoDb!=null) 
-			return new ResponseEntity<>(VideojuegoDb,HttpStatus.OK);
+		if(videojuegoDb!=null) 
+			return new ResponseEntity<>(MapperUtil.convertVideojuego(videojuegoDb),HttpStatus.OK);
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe un videojuego con ID: "+idVideojuego+"!",
+				HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping("/agregar")
-	public ResponseEntity<?> agregar(@RequestBody Videojuego Videojuego){
-		service.insert(Videojuego);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	public ResponseEntity<?> agregar(@RequestBody Videojuego videojuego){
+		service.insert(videojuego);
+		return new ResponseEntity<>(
+				"¡Videojuego \""+videojuego.getNombre()+"\" con ID: "+videojuego.getIdVideojuego()+", agregado correctamente!",
+				HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/editar/{idVideojuego}")
@@ -62,12 +65,13 @@ public class VideojuegoRestController{
 			oldVideojuego.setPrecio(newVideojuego.getPrecio());
 			oldVideojuego.setGenero(newVideojuego.getGenero());
 			
-			
 			service.update(oldVideojuego);
-			return new ResponseEntity<>(oldVideojuego,HttpStatus.OK);
+			return new ResponseEntity<>(MapperUtil.convertVideojuego(oldVideojuego),HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe un videojuego con ID: "+idVideojuego+"!",
+				HttpStatus.NOT_FOUND);
 	}
 	
 	@DeleteMapping("/eliminar/{idVideojuego}")
@@ -75,9 +79,13 @@ public class VideojuegoRestController{
 		
 		if(service.findById(idVideojuego)!=null) {
 			service.delete(idVideojuego);
-			return new ResponseEntity<Void>(HttpStatus.OK); 
+			return new ResponseEntity<>(
+					"Videojuego eliminado",
+					HttpStatus.OK); 
 		}
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe un videojuego con ID: "+idVideojuego+"!",
+				HttpStatus.NOT_FOUND);
 	}
 }

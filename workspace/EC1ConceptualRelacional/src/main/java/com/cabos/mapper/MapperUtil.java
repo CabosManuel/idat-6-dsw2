@@ -25,19 +25,25 @@ public class MapperUtil {
 		return jugadoresMapper;
 	}
 	
-	public static Collection<VideojuegosMapper> convertCollVideojuego(Collection<Videojuego> videojuegos){
-		Collection<VideojuegosMapper> videojuegosMapper = new ArrayList<>();
+	// VIDEOJUEGOS 
+	public static VideojuegoMapper convertVideojuego(Videojuego videojuego) {
+		VideojuegoMapper mapper = new VideojuegoMapper();
+		mapper.setId(videojuego.getIdVideojuego());
+		mapper.setGenero(videojuego.getGenero());
+		mapper.setNombre(videojuego.getNombre());
+		mapper.setPrecio("S/."+videojuego.getPrecio());
+		
+		return mapper;
+	}
+	
+	public static Collection<VideojuegoMapper> convertCollVideojuego(Collection<Videojuego> videojuegos){
+		Collection<VideojuegoMapper> videojuegosMapper = new ArrayList<>();
 		
 		for(Videojuego videojuego:videojuegos) {
-			VideojuegosMapper mapper = new VideojuegosMapper();
-			
-			mapper.setGenero(videojuego.getGenero());
-			mapper.setNombre(videojuego.getNombre());
-			mapper.setPrecio("S/."+videojuego.getPrecio());
-			
-			videojuegosMapper.add(mapper);
+			videojuegosMapper.add(convertVideojuego(videojuego));
 		}
 		
 		return videojuegosMapper;
 	}
+	
 }

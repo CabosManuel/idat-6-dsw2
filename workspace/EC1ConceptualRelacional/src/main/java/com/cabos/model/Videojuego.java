@@ -27,7 +27,7 @@ public class Videojuego implements Serializable{
 	@Column
 	private String genero;
 	
-	@OneToMany(mappedBy = "videojuego")
+	@OneToMany(mappedBy = "videojuego", cascade = CascadeType.REMOVE)
 	private Collection<Dlc> listaDlc=new ArrayList<>(); 
 	
 	@ManyToMany(
