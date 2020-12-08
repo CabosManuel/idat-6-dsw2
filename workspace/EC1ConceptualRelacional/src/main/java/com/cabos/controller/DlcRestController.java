@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cabos.mapper.MapperUtil;
 import com.cabos.model.Dlc;
 import com.cabos.services.DlcService;
 
@@ -29,9 +30,11 @@ public class DlcRestController{
 		Collection<Dlc> dlcs = service.findAll();
 		
 		if(dlcs.isEmpty()) 
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(
+					"No existen Dlcs",
+					HttpStatus.NO_CONTENT);
 		
-		return new ResponseEntity<>(dlcs,HttpStatus.OK);
+		return new ResponseEntity<>(MapperUtil.convertCollDlc(dlcs),HttpStatus.OK);
 	}
 	
 	@GetMapping("/buscar/{idDlc}")
@@ -39,15 +42,18 @@ public class DlcRestController{
 		Dlc DlcDb = service.findById(idDlc);
 		
 		if(DlcDb!=null) 
-			return new ResponseEntity<>(DlcDb,HttpStatus.OK);
+			return new ResponseEntity<>(MapperUtil.convertDlc(DlcDb),HttpStatus.OK);
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe un DLC con ID: "+idDlc+"!",
+				HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping("/agregar")
-	public ResponseEntity<?> agregar(@RequestBody Dlc Dlc){
-		service.insert(Dlc);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	public ResponseEntity<?> agregar(@RequestBody Dlc dlc){
+		service.insert(dlc);
+		return new ResponseEntity<>("¡DLC \""+dlc.getTitulo()+"\" con ID: "+dlc.getIdDlc()+", agregado correctamente!",
+				HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/editar/{idDlc}")
@@ -61,10 +67,12 @@ public class DlcRestController{
 			oldDlc.setContenido(newDlc.getContenido());
 			
 			service.update(oldDlc);
-			return new ResponseEntity<>(oldDlc,HttpStatus.OK);
+			return new ResponseEntity<>(MapperUtil.convertDlc(oldDlc) ,HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe un DLC con ID: "+idDlc+"!",
+				HttpStatus.NOT_FOUND);
 	}
 	
 	@DeleteMapping("/eliminar/{idDlc}")
@@ -72,9 +80,13 @@ public class DlcRestController{
 		
 		if(service.findById(idDlc)!=null) {
 			service.delete(idDlc);
-			return new ResponseEntity<Void>(HttpStatus.OK); 
+			return new ResponseEntity<>(
+					"DLC eliminado.",
+					HttpStatus.OK); 
 		}
 		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(
+				"¡No existe un DLC con ID: "+idDlc+"!",
+				HttpStatus.NOT_FOUND);
 	}
 }
