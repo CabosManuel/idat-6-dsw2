@@ -13,10 +13,53 @@ INSERT INTO videojuegos (nombre,genero,precio) VALUES ('Enter the Gungeon','Dung
 INSERT INTO videojuegos (nombre,genero,precio) VALUES ('Call of Duty Advance Warfare','Shooter',159.99);
 INSERT INTO videojuegos (nombre,genero,precio) VALUES ('Minecraft','Sandbox',96.25);
 
+insert into dlc (titulo,contenido,precio,tipo,id_videojuego) values (
+	'Rocket League - Jurassic World Car Pack',
+    '"Must go faster!" Celebrate a time when dinosaurs ruled the Earth while scoring epoch-worthy goals with the Jurassic Jeep Wrangler. Also included: themed customization items, including a T. rex Goal Explosion! ',
+    9.99,
+    'EN EL JUEGO',
+    1);
+insert into dlc (titulo,contenido,precio,tipo,id_videojuego) values (
+	'Call of Duty: Advanced Warfare - Havoc Map Pack',
+    'The first downloadable content pack for Call of Duty®: Advanced Warfare, featuring the all-new Exo Zombies co-op experience, the all-new versatile AE4 directed energy assault rifle, the AE4 Widowmaker custom variant.',
+    40.0,
+    'EN EL JUEGO',
+    3);
+insert into dlc (titulo,contenido,precio,tipo,id_videojuego) values (
+	'Call of Duty: Advanced Warfare - Season Pass',
+    'The Call of Duty: Advanced Warfare Season Pass gives you access to four exciting DLC packs* at one great price**, each delivering a collection of new, thrilling multiplayer content, bonus weapons, and more.',
+    130.0,
+    'EN EL JUEGO',
+    3);
+insert into dlc (titulo,contenido,precio,tipo,id_videojuego) values (
+	'Enter the Gungeon - Soundtrack',
+    'The Enter the Gungeon soundtrack by Doseone provided as high quality MP3 files.',
+    20.95,
+    'AUDIO',
+    2);
+insert into dlc (titulo,contenido,precio,tipo,id_videojuego) values (
+	'Enter the Gungeon - Digital Comic',
+    'Enter the Gungeon digital comic by Dayjob Studio. ',
+    9.95,
+    'IMGAGEN',
+    2);
+    
+insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (1,1);
+insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (1,2);
+insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (1,3);
+insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (1,4);
+
+insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (2,1);
+insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (2,2);
+insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (2,4);
+
+insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (3,1);
+insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (3,4);
+
 SELECT * FROM jugadores;
 SELECT * FROM informacion_personal;
-SELECT * FROM dlc;
 SELECT * FROM videojuegos;
+SELECT * FROM dlc;
 SELECT * FROM jugadores_vieojuegos;
 
 -- persona x nombre_usuario
