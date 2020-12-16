@@ -73,8 +73,7 @@ public class InformacionPersonalRestController {
 			infoPersonalDb.setNombres(informacionPersonal.getNombres());
 			service.update(infoPersonalDb);			
 			
-			return new ResponseEntity<>(
-					"¡No existe información personal con el ID: "+idInfoPersonal+"!",
+			return new ResponseEntity<>(MapperUtil.convertInfoPersonal(infoPersonalDb),
 					HttpStatus.OK);
 		}
 		

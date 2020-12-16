@@ -9,19 +9,19 @@ public class InfoPersonalMapper {
 	private String usaurio;
 	private String correo;
 	private LocalDate fNacimiento;
-	//private Integer edad;
+	private Integer edad;
 
 	public InfoPersonalMapper() {
 	}
 
-	public InfoPersonalMapper(Integer id, String nombresApellidos, String usaurio, String correo, LocalDate fNacimiento/*,
-			Integer edad*/) {
+	public InfoPersonalMapper(Integer id, String nombresApellidos, String usaurio, String correo, LocalDate fNacimiento,
+			Integer edad) {
 		this.id = id;
 		this.nombresApellidos = nombresApellidos;
 		this.usaurio = usaurio;
 		this.correo = correo;
 		this.fNacimiento = fNacimiento;
-		//this.edad = edad;
+		this.edad = edad;
 	}
 
 	public Integer getId() {
@@ -55,7 +55,7 @@ public class InfoPersonalMapper {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-
+	
 	public LocalDate getfNacimiento() {
 		return fNacimiento;
 	}
@@ -64,12 +64,12 @@ public class InfoPersonalMapper {
 		this.fNacimiento = fNacimiento;
 	}
 
-	/*
+	
 	public Integer getEdad() {
 		return edad;
 	}
 
 	public void setEdad(Integer edad) {
 		this.edad = edad;
-	}*/
+	}
 }

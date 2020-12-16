@@ -35,12 +35,15 @@ public class MapperUtil {
 	// INFORMACIÓN PERSONAL
 	public static InfoPersonalMapper convertInfoPersonal(InformacionPersonal ip) {
 		
+		LocalDate fN = LocalDate.parse(ip.getfNacimiento());
+		
 		return new InfoPersonalMapper(
 				ip.getIdInfoPersonal(), 
 				ip.getNombres()+" "+ip.getApellidos(), 
 				ip.getJugador().getNombreUsuario(), 
 				ip.getCorreo(), 
-				LocalDate.parse(ip.getfNacimiento().toString()).plusDays(1));
+				fN,
+				LocalDate.now().getYear() - fN.getYear());
 	}
 	
 	public static Collection<InfoPersonalMapper> convertCollInfoP(Collection<InformacionPersonal> infosPersonales){

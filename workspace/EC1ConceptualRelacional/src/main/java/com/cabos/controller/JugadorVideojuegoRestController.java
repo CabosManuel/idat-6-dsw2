@@ -34,6 +34,7 @@ public class JugadorVideojuegoRestController {
 			
 			if (videojuegoDb!=null) {
 				jugadorDb.addVideojuego(videojuegoDb);
+				jugadorDb.setnJuegos(jugadorDb.getnJuegos()+1);
 				jugadorService.insert(jugadorDb);
 				
 				return new ResponseEntity<>(

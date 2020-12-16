@@ -21,8 +21,8 @@ public class InformacionPersonal implements Serializable{
 	@Column
 	private String nombres;
 	
-	@Temporal(TemporalType.DATE)
-	private Date fNacimiento;
+	//@Temporal(TemporalType.DATE)
+	private /*Date*/String fNacimiento;
 	
 	@Column
 	private String correo;
@@ -44,7 +44,7 @@ public class InformacionPersonal implements Serializable{
 	
 	}
 
-	public InformacionPersonal(Integer idInfoPersonal, String apellidos, String nombres, Date fNacimiento,
+	public InformacionPersonal(Integer idInfoPersonal, String apellidos, String nombres, /*Date*/String fNacimiento,
 			String correo, String contrasena) {
 		super();
 		this.idInfoPersonal = idInfoPersonal;
@@ -79,11 +79,11 @@ public class InformacionPersonal implements Serializable{
 		this.nombres = nombres;
 	}
 
-	public Date getfNacimiento() {
+	public /*Date*/String getfNacimiento() {
 		return fNacimiento;
 	}
 
-	public void setfNacimiento(Date fNacimiento) {
+	public void setfNacimiento(/*Date*/String fNacimiento) {
 		this.fNacimiento = fNacimiento;
 	}
 
