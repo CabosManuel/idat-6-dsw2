@@ -38,9 +38,16 @@ public class JugadorRestController{
 	
 	@PostMapping("/agregar")
 	public ResponseEntity<?> agregar(@RequestBody Jugador jugador){
+
+		jugador.setHorasJugadas(0);
+		jugador.setnJuegos(0);
+		
+		System.out.println(jugador.getHorasJugadas()+", "+jugador.getnJuegos());
+		
 		service.insert(jugador);
 		return new ResponseEntity<>(
-				"¡Jugador \""+jugador.getNombreUsuario()+"\" con ID: "+jugador.getIdJugador()+", agregado correctamente!",
+				"¡Jugador \""+jugador.getNombreUsuario()+"\" con ID: "+jugador.getIdJugador()+", agregado correctamente!\n\n"+
+						"(Recuerde agregar su información personal para este usuario)",
 				HttpStatus.CREATED);
 	}
 	
@@ -63,7 +70,7 @@ public class JugadorRestController{
 		
 		if(oldJugador!=null) {
 			oldJugador.setNombreUsuario(newJugador.getNombreUsuario());
-			oldJugador.setnJuegos(newJugador.getnJuegos());
+			//oldJugador.setnJuegos(newJugador.getnJuegos());
 			oldJugador.setHorasJugadas(newJugador.getHorasJugadas());
 			
 			service.update(oldJugador);

@@ -1,10 +1,15 @@
 package com.cabos.mapper;
 
+import java.util.Collection;
+
+import com.cabos.model.Videojuego;
+
 public class JugadorMapper {
 	private Integer id;
 	private String nombreUsuario;
 	private Integer nJuegos;
 	private Integer horasJugadas;
+	private Collection<VideojuegoMapper> videojuegos;
 	
 	public JugadorMapper() {
 	}
@@ -14,6 +19,22 @@ public class JugadorMapper {
 		this.nombreUsuario = nombreUsuario;
 		this.nJuegos = nJuegos;
 		this.horasJugadas = horasJugadas;
+	}
+	
+	public JugadorMapper(Integer id, String nombreUsuario, Integer nJuegos, Integer horasJugadas, Collection<VideojuegoMapper> videojuegos) {
+		this.id = id;
+		this.nombreUsuario = nombreUsuario;
+		this.nJuegos = nJuegos;
+		this.horasJugadas = horasJugadas;
+		this.videojuegos = videojuegos;
+	}
+	
+	public Collection<VideojuegoMapper> getVideojuegos() {
+		return videojuegos;
+	}
+
+	public void setVideojuegos(Collection<VideojuegoMapper> videojuegos) {
+		this.videojuegos = videojuegos;
 	}
 
 	public Integer getId() {

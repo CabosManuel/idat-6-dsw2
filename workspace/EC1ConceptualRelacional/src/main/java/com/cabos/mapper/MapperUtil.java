@@ -13,8 +13,12 @@ public class MapperUtil {
 	
 	// JUGADOR
 	public static JugadorMapper convertJugador(Jugador j) {
-		return new JugadorMapper(j.getIdJugador(),j.getNombreUsuario(), 
-				j.getnJuegos(),j.getHorasJugadas());
+		return new JugadorMapper(
+				j.getIdJugador(),
+				j.getNombreUsuario(), 
+				j.getnJuegos(),
+				j.getHorasJugadas(),
+				convertCollVideojuego(j.getListaVideojuegos()));
 	}
 	
 	public static Collection<JugadorMapper> convertCollJugadores(Collection<Jugador> jugadores){

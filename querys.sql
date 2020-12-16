@@ -1,8 +1,8 @@
 use bd_dsw2_ec1;
 
-INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('Kboss',0,0);
-INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('Rubik',0,0);
-INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('RichMC',0,0);
+INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('Kboss',4,12);
+INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('RichMC',3,151);
+INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('Rubik',2,123);
 
 INSERT INTO informacion_personal (nombres,apellidos,f_nacimiento,correo,contrasena,id_jugador) VALUES ('Manuel','Cabos','2000-06-16','manuel@gmail.com','123',1);
 INSERT INTO informacion_personal (nombres,apellidos,f_nacimiento,correo,contrasena,id_jugador) VALUES ('Ignacio','Pascual','2000-06-16','ignacio@gmail.com','123',2);
