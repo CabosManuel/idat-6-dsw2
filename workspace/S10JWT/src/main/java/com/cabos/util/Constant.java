@@ -5,9 +5,9 @@ public class Constant {
 	public final static String ROLE = "role";
 	
 	// verificación de la firma
-	public final static String YOUR_SECRET = "your_secret";
+	public final static String KEY = "cabos";
 	
 	// es el encabezado que contiene al token (POSTMAN...)
 	public final static String AUTHORIZATION_HEADER = "Authorization";
-	public final static String BEARER_HEADER = "Bearer";
+	public final static String BEARER_HEADER = "Bearer ";
 }

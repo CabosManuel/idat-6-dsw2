@@ -16,7 +16,7 @@ public class JWTValidator {
 		
 		try {
 			Claims claims = Jwts.parser()
-					.setSigningKey(Constant.YOUR_SECRET)
+					.setSigningKey(Constant.KEY)
 					.parseClaimsJws(token)
 					.getBody();
 			

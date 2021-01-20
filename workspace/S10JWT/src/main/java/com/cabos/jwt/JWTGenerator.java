@@ -26,7 +26,7 @@ public class JWTGenerator {
 			// construcción del token
 			token = Jwts.builder()
 					.setClaims(claims)
-					.signWith(SignatureAlgorithm.HS256, Constant.YOUR_SECRET)
+					.signWith(SignatureAlgorithm.HS256, Constant.KEY)
 					.compact();
 		} catch (Exception e) {
 			e.printStackTrace();
