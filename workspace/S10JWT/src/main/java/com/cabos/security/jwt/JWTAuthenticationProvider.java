@@ -2,20 +2,24 @@ package com.cabos.security.jwt;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import com.cabos.jwt.JWTValidator;
 import com.cabos.model.jswt.JWTAuthenticationToken;
 import com.cabos.model.jswt.JWTUser;
 import com.cabos.model.jswt.JWTUserDetails;
 
+@Component
 public class JWTAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
+	@Autowired
 	private JWTValidator jwtValidator;
 	
 	@Override
