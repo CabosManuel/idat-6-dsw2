@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/rest")
 public class SecurityRestController {
-	
+
 	private static Collection<Double> movimientosBancarios = new ArrayList<>();
 	static {
 		movimientosBancarios.add(+1000.0);
@@ -21,11 +21,11 @@ public class SecurityRestController {
 		movimientosBancarios.add(-100.0);
 		movimientosBancarios.add(+400.0);
 	}
-	
+
 	@GetMapping("/info_bancaria")
-	public ResponseEntity<?> getInformacionBancaria(){
-		
-		if(!movimientosBancarios.isEmpty()) {
+	public ResponseEntity<?> getInformacionBancaria() {
+
+		if (!movimientosBancarios.isEmpty()) {
 			return new ResponseEntity<>(movimientosBancarios, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

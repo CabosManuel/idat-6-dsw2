@@ -16,25 +16,25 @@ import com.cabos.model.jswt.JWTUser;
 @RestController
 @RequestMapping("/token")
 public class TokenRestController {
-	
+
 	@Autowired
 	private JWTGenerator jwtGenerator;
-		
+
 	@PostMapping
-	public ResponseEntity<?> generate(@RequestBody Login login){
-		if(login.getUsername().equals("cabos") && login.getPassword().equals("c123")) {
+	public ResponseEntity<?> generate(@RequestBody Login login) {
+		if (login.getUsername().equals("cabos") && login.getPassword().equals("c123")) {
 			JWTUser jwtUser = new JWTUser();
-			
+
 			jwtUser.setUserId(1L);
 			jwtUser.setUsername(login.getUsername());
 			jwtUser.setRole("ADMIN");
-			
-			if(jwtUser !=null) {
+
+			if (jwtUser != null) {
 				String token = jwtGenerator.generatorToken(jwtUser);
 				return new ResponseEntity<>(token, HttpStatus.OK);
 			}
 		}
-		
+
 		return new ResponseEntity<>("Error, acceso denegado.", HttpStatus.BAD_REQUEST);
 	}
 }
