@@ -21,6 +21,8 @@ import com.cabos.security.jwt.JWTAuthenticationProvider;
 import com.cabos.security.jwt.JWTAuthenticationSuccesHandler;
 import com.cabos.security.jwt.JWTAuthenticationTokenFilter;
 
+import com.cabos.service.UserDetailsServiceImpl;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -34,10 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private JWTAuthenticationSuccesHandler jwtAuthenticationSuccesHandler;
 	
+	@Autowired
+	private UserDetailsServiceImpl usuarios;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		super.configure(auth);
-		
+		//super.configure(auth);
+		auth.userDetailsService(usuarios);
 	}
 	
 	@Override

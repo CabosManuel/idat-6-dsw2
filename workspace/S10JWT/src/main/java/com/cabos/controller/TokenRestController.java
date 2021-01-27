@@ -22,6 +22,7 @@ public class TokenRestController {
 
 	@PostMapping
 	public ResponseEntity<?> generate(@RequestBody Login login) {
+		
 		if (login.getUsername().equals("cabos") && login.getPassword().equals("c123")) {
 			JWTUser jwtUser = new JWTUser();
 
