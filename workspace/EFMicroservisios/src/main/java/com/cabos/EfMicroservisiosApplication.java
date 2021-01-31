@@ -15,7 +15,7 @@ public class EfMicroservisiosApplication {
 
 	@Bean
 	public RestTemplate restTemplate() {
-		BasicAuthenticationInterceptor interceptor = new BasicAuthenticationInterceptor("manuel","a123");
+		BasicAuthenticationInterceptor interceptor = new BasicAuthenticationInterceptor("cabos","c123");
 		
         RestTemplate rt = new RestTemplate();
         rt.getInterceptors().add(interceptor);
