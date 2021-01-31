@@ -78,9 +78,39 @@ public class MapperUtil {
 		return videojuegosMapper;
 	}
 	
+	public static VideojuegoMapper convertVideojuegoDlcs(Videojuego videojuego) {
+		VideojuegoDlcMapper mapper = new VideojuegoDlcMapper();
+		mapper.setId(videojuego.getIdVideojuego());
+		mapper.setGenero(videojuego.getGenero());
+		mapper.setNombre(videojuego.getNombre());
+		mapper.setPrecio("S/."+videojuego.getPrecio());
+		mapper.setDlcs(MapperUtil.convertCollDlc(videojuego.getListaDlc()));
+		
+		return mapper;
+	}
+	
 	// DLC
 	public static DlcMapper convertDlc(Dlc dlc) {
 		return new DlcMapper(
+				dlc.getIdDlc(),
+				dlc.getTitulo(),
+				"S/."+dlc.getPrecio(),
+				dlc.getTipo(),
+				dlc.getContenido());
+	}
+	
+	public static Collection<DlcMapper> convertCollDlc(Collection<Dlc> dlcs){
+		Collection<DlcMapper> dlcsMapper = new ArrayList<>();
+		
+		for(Dlc dlc:dlcs) {
+			dlcsMapper.add(convertDlc(dlc));
+		}
+		
+		return dlcsMapper;
+	}
+	
+	public static DlcVideojuegoMapper convertDlcVideojuego(Dlc dlc) {
+		return new DlcVideojuegoMapper(
 				dlc.getIdDlc(),
 				dlc.getTitulo(),
 				"S/."+dlc.getPrecio(),
@@ -89,11 +119,11 @@ public class MapperUtil {
 				dlc.getVideojuego().getNombre());
 	}
 	
-	public static Collection<DlcMapper> convertCollDlc(Collection<Dlc> dlcs){
-		Collection<DlcMapper> dlcsMapper = new ArrayList<>();
+	public static Collection<DlcVideojuegoMapper> convertCollDlcVidejuego(Collection<Dlc> dlcs){
+		Collection<DlcVideojuegoMapper> dlcsMapper = new ArrayList<>();
 		
 		for(Dlc dlc:dlcs) {
-			dlcsMapper.add(convertDlc(dlc));
+			dlcsMapper.add(convertDlcVideojuego(dlc));
 		}
 		
 		return dlcsMapper;

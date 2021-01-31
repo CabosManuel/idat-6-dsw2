@@ -32,7 +32,7 @@ public class DlcRestController {
 		if (dlcs.isEmpty())
 			return new ResponseEntity<>("No existen Dlcs", HttpStatus.NO_CONTENT);
 
-		return new ResponseEntity<>(MapperUtil.convertCollDlc(dlcs), HttpStatus.OK);
+		return new ResponseEntity<>(MapperUtil.convertCollDlcVidejuego(dlcs), HttpStatus.OK);
 	}
 
 	@GetMapping("/buscar/{idDlc}")
@@ -40,7 +40,7 @@ public class DlcRestController {
 		Dlc DlcDb = service.findById(idDlc);
 
 		if (DlcDb != null)
-			return new ResponseEntity<>(MapperUtil.convertDlc(DlcDb), HttpStatus.OK);
+			return new ResponseEntity<>(MapperUtil.convertDlcVideojuego(DlcDb), HttpStatus.OK);
 
 		return new ResponseEntity<>("¡No existe un DLC con ID: " + idDlc + "!", HttpStatus.NOT_FOUND);
 	}

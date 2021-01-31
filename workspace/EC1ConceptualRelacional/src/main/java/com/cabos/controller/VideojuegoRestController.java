@@ -40,7 +40,7 @@ public class VideojuegoRestController {
 		Videojuego videojuegoDb = service.findById(idVideojuego);
 
 		if (videojuegoDb != null)
-			return new ResponseEntity<>(MapperUtil.convertVideojuego(videojuegoDb), HttpStatus.OK);
+			return new ResponseEntity<>(MapperUtil.convertVideojuegoDlcs(videojuegoDb), HttpStatus.OK);
 
 		return new ResponseEntity<>("¡No existe un videojuego con ID: " + idVideojuego + "!", HttpStatus.NOT_FOUND);
 	}

@@ -1,21 +1,24 @@
 package com.cabos.mapper;
 
-public class DlcMapper {
+public class DlcVideojuegoMapper {
 	private Integer idDlc;
 	private String titulo;
 	private String precio;
 	private String tipo;
 	private String contenido;
+	private String videojuego;
 
-	public DlcMapper() {
+	public DlcVideojuegoMapper() {
 	}
 
-	public DlcMapper(Integer idDlc, String titulo, String precio, String tipo, String contenido) {
+	public DlcVideojuegoMapper(Integer idDlc, String titulo, String precio, String tipo, String contenido, String videojuego) {
+		super();
 		this.idDlc = idDlc;
 		this.titulo = titulo;
 		this.precio = precio;
 		this.tipo = tipo;
 		this.contenido = contenido;
+		this.videojuego = videojuego;
 	}
 
 	public Integer getIdDlc() {
@@ -56,6 +59,14 @@ public class DlcMapper {
 
 	public void setContenido(String contenido) {
 		this.contenido = contenido;
+	}
+
+	public String getVideojuego() {
+		return videojuego;
+	}
+
+	public void setVideojuego(String videojuego) {
+		this.videojuego = videojuego;
 	}
 
 }
