@@ -1,12 +1,28 @@
 use bd_dsw2_ec1;
 
-INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('Kboss',4,12);
+delete from informacion_personal ip where ip.id_info_personal  < 100;
+ALTER TABLE informacion_personal AUTO_INCREMENT = 1;
+
+delete from jugadores_vieojuegos jv where jv.id_jugador < 100;
+ALTER TABLE jugadores_vieojuegos AUTO_INCREMENT = 1;
+
+delete from jugadores j where j.id_jugador < 100;
+alter table jugadores AUTO_INCREMENT = 1;
+
+delete from dlc d where d.id_dlc < 100;
+alter table dlc AUTO_INCREMENT = 1;
+
+delete from videojuegos v where v.id_videojuego < 100;
+ALTER TABLE videojuegos AUTO_INCREMENT = 1;
+
+/*INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('Kboss',4,12);
 INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('RichMC',3,151);
 INSERT INTO jugadores (nombre_usuario,n_juegos,horas_jugadas) VALUES ('Rubik',2,123);
 
 INSERT INTO informacion_personal (nombres,apellidos,f_nacimiento,correo,contrasena,id_jugador) VALUES ('Manuel','Cabos','2000-06-16','manuel@gmail.com','123',1);
 INSERT INTO informacion_personal (nombres,apellidos,f_nacimiento,correo,contrasena,id_jugador) VALUES ('Ricardo','Antonio','1996-01-12','ricardo@gmail.com','123',2);
 INSERT INTO informacion_personal (nombres,apellidos,f_nacimiento,correo,contrasena,id_jugador) VALUES ('Ignacio','Pascual','1995-11-27','ignacio@gmail.com','123',3);
+*/
 
 INSERT INTO videojuegos (nombre,genero,precio) VALUES ('Rocket League','Deporte',34.9);
 INSERT INTO videojuegos (nombre,genero,precio) VALUES ('Enter the Gungeon','Dungeon Crawler',25.5);
@@ -43,7 +59,7 @@ insert into dlc (titulo,contenido,precio,tipo,id_videojuego) values (
     9.95,
     'IMGAGEN',
     2);
-    
+/*    
 insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (1,1);
 insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (1,2);
 insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (1,3);
@@ -56,6 +72,8 @@ insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (2,4);
 insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (3,1);
 insert into jugadores_vieojuegos(id_jugador,id_videojuego) values (3,4);
 
+
+
 SELECT * FROM jugadores;
 SELECT * FROM informacion_personal;
 SELECT * FROM videojuegos;
@@ -66,3 +84,4 @@ SELECT * FROM jugadores_vieojuegos;
 SELECT concat(informacion_personal.nombres, ' ', informacion_personal.apellidos) as persona,jugadores.nombre_usuario
 FROM informacion_personal,jugadores
 WHERE informacion_personal.id_jugador like jugadores.id_jugador;
+*/
