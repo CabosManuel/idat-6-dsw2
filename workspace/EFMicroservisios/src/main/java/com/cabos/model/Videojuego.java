@@ -2,7 +2,7 @@ package com.cabos.model;
 
 public class Videojuego {
 
-	private Integer id;
+	private Integer idVideojuego;
 	private String nombre;
 	private Double precio;
 	private String genero;
@@ -10,19 +10,19 @@ public class Videojuego {
 	public Videojuego() {
 	}
 
-	public Videojuego(Integer id, String nombre, Double precio, String genero) {
-		this.id = id;
+	public Videojuego(Integer idVideojuego, String nombre, Double precio, String genero) {
+		this.idVideojuego = idVideojuego;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.genero = genero;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdVideojuego() {
+		return idVideojuego;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdVideojuego(Integer idVideojuego) {
+		this.idVideojuego = idVideojuego;
 	}
 
 	public String getNombre() {
