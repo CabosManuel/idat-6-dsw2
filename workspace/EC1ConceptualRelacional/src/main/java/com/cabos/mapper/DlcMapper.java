@@ -3,14 +3,14 @@ package com.cabos.mapper;
 public class DlcMapper {
 	private Integer idDlc;
 	private String titulo;
-	private String precio;
+	private Double precio;
 	private String tipo;
 	private String contenido;
 
 	public DlcMapper() {
 	}
 
-	public DlcMapper(Integer idDlc, String titulo, String precio, String tipo, String contenido) {
+	public DlcMapper(Integer idDlc, String titulo, Double precio, String tipo, String contenido) {
 		this.idDlc = idDlc;
 		this.titulo = titulo;
 		this.precio = precio;
@@ -34,11 +34,11 @@ public class DlcMapper {
 		this.titulo = titulo;
 	}
 
-	public String getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(String precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 

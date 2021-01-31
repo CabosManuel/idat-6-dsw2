@@ -83,7 +83,7 @@ public class MapperUtil {
 		mapper.setId(videojuego.getIdVideojuego());
 		mapper.setGenero(videojuego.getGenero());
 		mapper.setNombre(videojuego.getNombre());
-		mapper.setPrecio("S/."+videojuego.getPrecio());
+		mapper.setPrecio(videojuego.getPrecio());
 		mapper.setDlcs(MapperUtil.convertCollDlc(videojuego.getListaDlc()));
 		
 		return mapper;
@@ -94,7 +94,7 @@ public class MapperUtil {
 		return new DlcMapper(
 				dlc.getIdDlc(),
 				dlc.getTitulo(),
-				"S/."+dlc.getPrecio(),
+				dlc.getPrecio(),
 				dlc.getTipo(),
 				dlc.getContenido());
 	}
