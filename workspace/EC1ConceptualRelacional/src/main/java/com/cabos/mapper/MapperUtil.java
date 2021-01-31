@@ -60,7 +60,7 @@ public class MapperUtil {
 	// VIDEOJUEGOS 
 	public static VideojuegoMapper convertVideojuego(Videojuego videojuego) {
 		VideojuegoMapper mapper = new VideojuegoMapper();
-		mapper.setId(videojuego.getIdVideojuego());
+		mapper.setIdVideojuego(videojuego.getIdVideojuego());
 		mapper.setGenero(videojuego.getGenero());
 		mapper.setNombre(videojuego.getNombre());
 		mapper.setPrecio(videojuego.getPrecio());
@@ -80,7 +80,7 @@ public class MapperUtil {
 	
 	public static VideojuegoMapper convertVideojuegoDlcs(Videojuego videojuego) {
 		VideojuegoDlcMapper mapper = new VideojuegoDlcMapper();
-		mapper.setId(videojuego.getIdVideojuego());
+		mapper.setIdVideojuego(videojuego.getIdVideojuego());
 		mapper.setGenero(videojuego.getGenero());
 		mapper.setNombre(videojuego.getNombre());
 		mapper.setPrecio(videojuego.getPrecio());
