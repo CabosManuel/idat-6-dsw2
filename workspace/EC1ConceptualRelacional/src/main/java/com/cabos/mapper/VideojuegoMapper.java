@@ -3,13 +3,13 @@ package com.cabos.mapper;
 public class VideojuegoMapper {
 	private Integer id;
 	private String nombre;
-	private String precio;
+	private Double precio;
 	private String genero;
 
 	public VideojuegoMapper() {
 	}
 
-	public VideojuegoMapper(Integer id, String nombre, String precio, String genero) {
+	public VideojuegoMapper(Integer id, String nombre, Double precio, String genero) {
 		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
@@ -32,11 +32,11 @@ public class VideojuegoMapper {
 		this.nombre = nombre;
 	}
 
-	public String getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(String precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 
