@@ -20,7 +20,7 @@ import com.cabos.model.Jugador;
 import com.cabos.services.JugadorService;
 
 @RestController
-@RequestMapping("/rest/jugador")
+@RequestMapping("/jugador")
 public class JugadorRestController{
 	
 	@Autowired

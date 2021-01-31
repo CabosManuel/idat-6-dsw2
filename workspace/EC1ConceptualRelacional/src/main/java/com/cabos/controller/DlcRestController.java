@@ -19,7 +19,7 @@ import com.cabos.model.Dlc;
 import com.cabos.services.DlcService;
 
 @RestController
-@RequestMapping("/rest/dlc")
+@RequestMapping("/dlc")
 public class DlcRestController {
 
 	@Autowired

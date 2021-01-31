@@ -15,7 +15,7 @@ import com.cabos.services.JugadorService;
 import com.cabos.services.VideojuegoService;
 
 @RestController
-@RequestMapping("/rest/jugador_videojuego")
+@RequestMapping("/jugador_videojuego")
 public class JugadorVideojuegoRestController {
 	
 	@Autowired

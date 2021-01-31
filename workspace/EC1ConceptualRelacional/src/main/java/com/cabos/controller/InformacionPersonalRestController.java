@@ -20,7 +20,7 @@ import com.cabos.model.InformacionPersonal;
 import com.cabos.services.InformacionPersonalService;
 
 @RestController
-@RequestMapping("/rest/info_personal")
+@RequestMapping("/info_personal")
 public class InformacionPersonalRestController {
 
 	@Autowired
