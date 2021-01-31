@@ -1,0 +1,52 @@
+package com.cabos.model;
+
+public class Videojuego {
+
+	private Integer id;
+	private String nombre;
+	private Double precio;
+	private String genero;
+
+	public Videojuego() {
+	}
+
+	public Videojuego(Integer id, String nombre, Double precio, String genero) {
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.genero = genero;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+}
