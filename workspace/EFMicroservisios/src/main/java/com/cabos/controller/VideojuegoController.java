@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.cabos.model.Videojuego;
+import com.cabos.util.BAInterceptor;
 import com.cabos.util.Url;
 
 @RestController
@@ -29,6 +30,7 @@ public class VideojuegoController {
 
 	@GetMapping(value = Url.LISTAR, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> listar() {
+		BAInterceptor.agregar(rt);
 		Videojuego[] videojuegos = rt.getForObject(Url.URL_VIDEOJUEGO + Url.LISTAR, Videojuego[].class);
 		Collection<Videojuego> nuevosVideojuegos = Arrays.asList(videojuegos); 
 		
@@ -37,18 +39,21 @@ public class VideojuegoController {
 	
 	@PostMapping(value = Url.AGREGAR, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> agregar(@RequestBody Videojuego videojuego){
+		BAInterceptor.agregar(rt);
 		rt.postForLocation(Url.URL_VIDEOJUEGO + Url.AGREGAR, videojuego);
 		return new ResponseEntity<>("¡Creado!", HttpStatus.CREATED);
 	}
 	
 	@PutMapping(value = Url.EDITAR + "/{idVideojuego}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> editar(@PathVariable Integer idVideojuego, @RequestBody Videojuego videojuego){
+		BAInterceptor.agregar(rt);
 		rt.put(Url.URL_VIDEOJUEGO + Url.EDITAR + "/" + idVideojuego, videojuego);
 		return new ResponseEntity<>("¡Editado!", HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = Url.ELIMINAR + "/{idVideojuego}")
 	public ResponseEntity<?> eliminar(@PathVariable Integer idVideojuego){
+		BAInterceptor.agregar(rt);
 		rt.delete(Url.URL_VIDEOJUEGO + Url.ELIMINAR + "/" + idVideojuego);
 		return new ResponseEntity<>("¡Eliminado!", HttpStatus.OK);
 	}
