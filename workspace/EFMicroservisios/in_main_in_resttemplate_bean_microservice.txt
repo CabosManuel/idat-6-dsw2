@@ -1,0 +1,13 @@
+RestTemplate rt = new RestTemplate();
+        rt.getInterceptors().add(new ClientHttpRequestInterceptor() {
+            @Override
+            public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
+            	System.out.println("head: "+request.getHeaders().toString());
+            	HttpEntity<String> httpEntity = new HttpEntity<>(request.getHeaders());
+    			System.out.println("entry: "+httpEntity);
+            			
+            	System.out.println("!=: "+(request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION)!=null));
+            	System.out.println("auth: "+request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION).toString());
+                return null;
+            }
+        });

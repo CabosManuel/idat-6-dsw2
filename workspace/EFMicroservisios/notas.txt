@@ -1,0 +1,6 @@
+Getting username in PasswordEncoder (respuesta para obtener headers)
+https://stackoverflow.com/questions/23007096/getting-username-in-passwordencoder
+
+HttpServletRequest
+https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html#getHeaders(java.lang.String)
+
